@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище UserModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "User.dbo.User_role" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="User_role">
+    <Key>
+      <PropertyRef Name="login" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_User_role_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User_role" Type="Self.User_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_role">
+        <PropertyRef Name="role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_role_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User_role" Type="Self.User_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="User_role">
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище UserModelContainer">
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_role" EntityType="Self.User_role" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [User_role].[login] AS [login], 
+    [User_role].[role] AS [role]
+    FROM [dbo].[User_role] AS [User_role]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_User_role_Role" Association="Self.FK_User_role_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User_role" EntitySet="User_role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_role_User" Association="Self.FK_User_role_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User_role" EntitySet="User_role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
