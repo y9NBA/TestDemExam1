@@ -31,6 +31,14 @@ namespace ДЭ1
             //List<dno> users = Singleton.DB.dno.ToList();
             if ( users.Count == 1)
             {
+                User user = users[0];
+                string roles = "";
+                string separator = ",";
+                bool addSeparator = false;
+                foreach (Role role in user.Role)
+                {
+
+                }
                 Window1 window1 = new Window1();
                 Hide();
                 window1.ShowDialog();

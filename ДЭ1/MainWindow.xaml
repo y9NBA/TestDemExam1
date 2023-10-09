@@ -13,7 +13,10 @@
                 <TextBox x:Name="login"/> 
                 <Label Content="Password"/>
                 <PasswordBox x:Name="password"/>
-                <Button x:Name="loginBtr" Content="Авторизоваться" Click="LoginBtr_Click"/>
+                <Button x:Name="loginBtr" 
+                        Content="Авторизоваться" 
+                        Click="LoginBtr_Click"
+                        />
             </StackPanel>
         </DockPanel>
     </Grid>
