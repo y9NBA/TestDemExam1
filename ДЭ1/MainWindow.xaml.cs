@@ -32,12 +32,11 @@ namespace ДЭ1
             if ( users.Count == 1)
             {
                 User user = users[0];
-                string roles = "";
-                string separator = ",";
-                bool addSeparator = false;
+                List <string> roles = new List<string>();
+                string separator = ", ";
                 foreach (Role role in user.Role)
                 {
-
+                    roles.Add(role.Name);
                 }
                 Window1 window1 = new Window1();
                 Hide();

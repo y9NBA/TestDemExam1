@@ -13,10 +13,10 @@ namespace ДЭ1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UserEntities3 : DbContext
+    public partial class Entities : DbContext
     {
-        public UserEntities3()
-            : base("name=UserEntities3")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

@@ -7,10 +7,10 @@
       <Schema Namespace="Хранилище UserModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -20,55 +20,55 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "User.dbo.User_role" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="User_role">
+предупреждение 6002: В таблице или представлении "User.dbo.User_Role" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="User_Role">
           <Key>
-            <PropertyRef Name="login" />
-            <PropertyRef Name="role" />
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Role" />
           </Key>
-          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
-        <Association Name="FK_User_role_Role">
+        <Association Name="FK_User_Role_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="User_role" Type="Self.User_role" Multiplicity="*" />
+          <End Role="User_Role" Type="Self.User_Role" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="User_role">
-              <PropertyRef Name="role" />
+            <Dependent Role="User_Role">
+              <PropertyRef Name="Role" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_role_User">
+        <Association Name="FK_User_Role_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="User_role" Type="Self.User_role" Multiplicity="*" />
+          <End Role="User_Role" Type="Self.User_Role" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="login" />
             </Principal>
-            <Dependent Role="User_role">
-              <PropertyRef Name="login" />
+            <Dependent Role="User_Role">
+              <PropertyRef Name="Login" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище UserModelContainer">
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_role" EntityType="Self.User_role" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="User_Role" EntityType="Self.User_Role" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [User_role].[login] AS [login], 
-    [User_role].[role] AS [role]
-    FROM [dbo].[User_role] AS [User_role]</DefiningQuery>
+    [User_Role].[Login] AS [Login], 
+    [User_Role].[Role] AS [Role]
+    FROM [dbo].[User_Role] AS [User_Role]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_User_role_Role" Association="Self.FK_User_role_Role">
+          <AssociationSet Name="FK_User_Role_Role" Association="Self.FK_User_Role_Role">
             <End Role="Role" EntitySet="Role" />
-            <End Role="User_role" EntitySet="User_role" />
+            <End Role="User_Role" EntitySet="User_Role" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_role_User" Association="Self.FK_User_role_User">
+          <AssociationSet Name="FK_User_Role_User" Association="Self.FK_User_Role_User">
             <End Role="User" EntitySet="User" />
-            <End Role="User_role" EntitySet="User_role" />
+            <End Role="User_Role" EntitySet="User_Role" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -78,11 +78,11 @@
       <Schema Namespace="UserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.User_role" FromRole="Role" ToRole="User" />
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -90,16 +90,16 @@
           </Key>
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="Self.User_role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Role" Relationship="Self.User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
-        <Association Name="User_role">
+        <Association Name="User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="*" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="UserEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="User_role" Association="Self.User_role">
+          <AssociationSet Name="User_Role" Association="Self.User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
@@ -109,12 +109,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище UserModelContainer" CdmEntityContainer="UserEntities3">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UserModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="UserModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -126,12 +126,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="User_role" TypeName="UserModel.User_role" StoreEntitySet="User_role">
+          <AssociationSetMapping Name="User_Role" TypeName="UserModel.User_Role" StoreEntitySet="User_Role">
             <EndProperty Name="Role">
-              <ScalarProperty Name="id" ColumnName="role" />
+              <ScalarProperty Name="ID" ColumnName="Role" />
             </EndProperty>
             <EndProperty Name="User">
-              <ScalarProperty Name="login" ColumnName="login" />
+              <ScalarProperty Name="login" ColumnName="Login" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
