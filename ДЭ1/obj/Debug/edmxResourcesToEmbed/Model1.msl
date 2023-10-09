@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище UserModelContainer" CdmEntityContainer="Entities">
     <EntitySetMapping Name="Role">
-      <EntityTypeMapping TypeName="Model.Role">
+      <EntityTypeMapping TypeName="UserModel.Role">
         <MappingFragment StoreEntitySet="Role">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -10,14 +10,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="Model.User">
+      <EntityTypeMapping TypeName="UserModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="password" ColumnName="password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="User_Role" TypeName="Model.User_Role" StoreEntitySet="User_Role">
+    <AssociationSetMapping Name="User_Role" TypeName="UserModel.User_Role" StoreEntitySet="User_Role">
       <EndProperty Name="Role">
         <ScalarProperty Name="ID" ColumnName="Role" />
       </EndProperty>
@@ -25,5 +25,17 @@
         <ScalarProperty Name="login" ColumnName="Login" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="UserModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
+          <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
+          <ScalarProperty Name="Litera" ColumnName="Litera" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

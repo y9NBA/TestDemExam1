@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ДЭ1"
         mc:Ignorable="d"
-        Title="Window2" Height="450" Width="800">
+        Title="Window2" Height="450" Width="800"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
     <Grid>
-        
+        <DataGrid x:Name="Group" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Год поступления" Binding="{Binding Year}"/>
+                <DataGridTextColumn Header="Литерал" Binding="{Binding Litera}"/>
+                <DataGridTextColumn Header="Подгруппа" Binding="{Binding SubGroup}"/>  
+                <DataGridTextColumn Header="Классов" Binding="{Binding CountClasses}"/>
+                <DataGridTextColumn Header="Полное название" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

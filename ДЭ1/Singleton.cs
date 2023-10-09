@@ -9,6 +9,6 @@ namespace ДЭ1
 {
     internal class Singleton
     {
-        public static Entities BD { get;  } = new Entities();
+        public static Entities DB { get;  } = new Entities();
     }
 }

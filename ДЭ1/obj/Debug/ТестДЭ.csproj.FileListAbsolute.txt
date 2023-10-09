@@ -21,3 +21,5 @@ C:\Users\User\#\Projects\Demo\ДЭ1\obj\Debug\ДЭ1.Properties.Resources.resourc
 C:\Users\User\#\Projects\Demo\ДЭ1\obj\Debug\ТестДЭ.csproj.GenerateResource.cache
 C:\Users\User\#\Projects\Demo\ДЭ1\obj\Debug\ТестДЭ.csproj.CoreCompileInputs.cache
 C:\Users\User\#\Projects\Demo\ДЭ1\obj\Debug\ТестДЭ.csproj.CopyComplete
+C:\Users\User\#\Projects\Demo\ДЭ1\obj\Debug\Window2.g.cs
+C:\Users\User\#\Projects\Demo\ДЭ1\obj\Debug\Window2.baml

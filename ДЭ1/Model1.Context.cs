@@ -27,5 +27,6 @@ namespace ДЭ1
     
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
     }
 }

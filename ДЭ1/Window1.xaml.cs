@@ -26,13 +26,13 @@ namespace ДЭ1
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Singleton.BD.User.ToList();
+            Singleton.DB.User.ToList();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Singleton.BD.SaveChanges();
-            table.ItemsSource = Singleton.BD.User.Local;
+            Singleton.DB.SaveChanges();
+            table.ItemsSource = Singleton.DB.User.Local;
         }
     }
 }
