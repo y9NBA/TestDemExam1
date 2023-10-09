@@ -15,7 +15,7 @@
                 <DataGridTextColumn Header="Литерал" Binding="{Binding Litera}"/>
                 <DataGridTextColumn Header="Подгруппа" Binding="{Binding SubGroup}"/>  
                 <DataGridTextColumn Header="Классов" Binding="{Binding CountClasses}"/>
-                <DataGridTextColumn Header="Полное название" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Полное название" Binding="{Binding Name}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

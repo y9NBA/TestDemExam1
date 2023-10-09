@@ -24,15 +24,15 @@ namespace ДЭ1
             InitializeComponent();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            Singleton.DB.User.ToList();
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Singleton.DB.SaveChanges();
+            Singleton.DB.User.ToList();
             table.ItemsSource = Singleton.DB.User.Local;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Singleton.DB.SaveChanges();
         }
     }
 }
