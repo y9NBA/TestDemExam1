@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище UserModelContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="UserModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Litera" ColumnName="Litera" />
+          <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
+          <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="UserModel.Role">
         <MappingFragment StoreEntitySet="Role">
@@ -25,17 +37,5 @@
         <ScalarProperty Name="login" ColumnName="Login" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Group">
-      <EntityTypeMapping TypeName="UserModel.Group">
-        <MappingFragment StoreEntitySet="Group">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
-          <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
-          <ScalarProperty Name="Litera" ColumnName="Litera" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

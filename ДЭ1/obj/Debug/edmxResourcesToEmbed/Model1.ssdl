@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Year" Type="numeric" Precision="4" Scale="0" Nullable="false" />
     <Property Name="Litera" Type="nvarchar" MaxLength="2" Nullable="false" />
     <Property Name="SubGroup" Type="numeric" Precision="1" Scale="0" Nullable="false" />
