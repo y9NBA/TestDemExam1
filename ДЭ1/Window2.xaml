@@ -13,10 +13,13 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Год поступления" Binding="{Binding Year}"/>
                 <DataGridTextColumn Header="Литерал" Binding="{Binding Litera}"/>
-                <DataGridTextColumn Header="Подгруппа" Binding="{Binding SubGroup}"/>  
+                <DataGridTextColumn Header="Подгруппа" Binding="{Binding SubGroup}"/>
                 <DataGridTextColumn Header="Классов" Binding="{Binding CountClasses}"/>
                 <DataGridTextColumn Header="Полное название" Binding="{Binding Name}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="Btn_Zavka_Forms" >
+            
+        </Button>
     </Grid>
 </Window>
