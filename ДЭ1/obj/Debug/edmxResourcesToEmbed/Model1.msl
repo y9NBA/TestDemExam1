@@ -37,5 +37,20 @@
         <ScalarProperty Name="login" ColumnName="Login" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="UserModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Member_name" ColumnName="Member_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="UserModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Group_Student" ColumnName="Group_Student" />
+          <ScalarProperty Name="Member_name" ColumnName="Member_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -5,29 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ДЭ1"
         mc:Ignorable="d"
-        Title="Форма добавления студента в группу" Height="450" Width="400">
+        Title="Форма добавления студента в группу" Height="450" Width="400"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
     <Grid>
         <DockPanel>
             <StackPanel HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10">
-                    <TextBlock Text="Студент" FontSize="18" Height="30" Width="70"/>
-                    <ComboBox x:Name="FYO" Width="250"/>
+                    <TextBlock Text="Студент" FontSize="16" Height="30" Width="70"/>
+                    <ComboBox x:Name="FYO" FontSize="16" Width="250" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10">
-                    <TextBlock Text="Группа" FontSize="18" Height="30" Width="70"/>
-                    <ComboBox x:Name="Groups" Width="250"/>
+                    <TextBlock Text="Группа" FontSize="16" Height="30" Width="70"/>
+                    <ComboBox x:Name="Groups" FontSize="16" Width="250" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="Btn_Cancel"
                         Width="180"
                         Height="25"
-                        Content="Отменить" FontSize="15"
-                        Margin="5"/>
+                        Content="Отменить" FontSize="16"
+                        Margin="5"
+                        Click="Btn_Cancel_Click"/>
                     <Button x:Name="Btn_Add"
                         Width="180"
                         Height="25"
-                        Content="Добавить" FontSize="15"
-                        Margin="5"/>
+                        Content="Добавить" FontSize="16"
+                        Margin="5"
+                        Click="Btn_Add_Click"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>

@@ -48,3 +48,5 @@ C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\ТестДЭ.csproj.CoreCo
 C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\ТестДЭ.csproj.CopyComplete
 C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\ДЭ1.exe
 C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\ДЭ1.pdb
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\Window3.g.cs
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\Window3.baml

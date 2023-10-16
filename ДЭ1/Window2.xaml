@@ -9,7 +9,8 @@
         Loaded="Window_Loaded"
         Closed="Window_Closed">
     <Grid>
-        <DataGrid x:Name="Group" AutoGenerateColumns="False">
+        <DockPanel>
+        <DataGrid x:Name="Group" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="600">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Год поступления" Binding="{Binding Year}"/>
                 <DataGridTextColumn Header="Литерал" Binding="{Binding Litera}"/>
@@ -18,8 +19,7 @@
                 <DataGridTextColumn Header="Полное название" Binding="{Binding Name}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="Btn_Zavka_Forms" >
-            
-        </Button>
+        <Button x:Name="Btn_Zavka_Forms" Height="100" Width="100" Click="Btn_Add_Student_Form_Click" Content="Добавление студента"/>
+        </DockPanel>
     </Grid>
 </Window>

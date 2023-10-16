@@ -16,12 +16,25 @@
           <Property Name="CountClasses" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="33" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Member_name" />
+          </Key>
+          <Property Name="Member_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Member_name" />
+          </Key>
+          <Property Name="Member_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Group_Student" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -66,7 +79,9 @@
         </Association>
         <EntityContainer Name="Хранилище UserModelContainer">
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Role" EntityType="Self.User_Role" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -126,7 +141,22 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="Person" EntityType="UserModel.Person" />
+          <EntitySet Name="Student" EntityType="UserModel.Student" />
         </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Member_name" />
+          </Key>
+          <Property Name="Member_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Member_name" />
+          </Key>
+          <Property Name="Member_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Group_Student" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -169,6 +199,21 @@
               <ScalarProperty Name="login" ColumnName="Login" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="UserModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Member_name" ColumnName="Member_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="UserModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Group_Student" ColumnName="Group_Student" />
+                <ScalarProperty Name="Member_name" ColumnName="Member_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -34,5 +34,13 @@ namespace ДЭ1
         {
             Singleton.DB.SaveChanges();
         }
+
+        private void Btn_Add_Student_Form_Click(object sender, RoutedEventArgs e)
+        {
+            Singleton.DB.SaveChanges();
+            Window3 window3 = new Window3();
+            window3.ShowDialog();
+            
+        }
     }
 }

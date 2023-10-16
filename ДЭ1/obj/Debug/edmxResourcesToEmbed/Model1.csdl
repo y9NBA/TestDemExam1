@@ -39,5 +39,20 @@
       <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
+    <EntitySet Name="Person" EntityType="UserModel.Person" />
+    <EntitySet Name="Student" EntityType="UserModel.Student" />
   </EntityContainer>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Member_name" />
+    </Key>
+    <Property Name="Member_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Member_name" />
+    </Key>
+    <Property Name="Member_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Group_Student" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>
