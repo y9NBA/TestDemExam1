@@ -50,8 +50,15 @@ namespace ДЭ1
 
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            Singleton.DB.Student.Local.Add(new Student { Member_name = FYO.Text, Group_Student= Groups.Text});
-            Singleton.DB.SaveChanges();
+            if (Groups.Text == string.Empty || FYO.Text == string.Empty)
+            {
+                MessageBox.Show("Вы ввели не все данные!");
+            }
+            else
+            {
+                Singleton.DB.Student.Local.Add(new Student { Member_name = FYO.Text, Group_Student = Groups.Text });
+                Singleton.DB.SaveChanges();
+            }
         }
     }
 }

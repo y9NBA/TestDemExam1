@@ -21,17 +21,19 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="Btn_Cancel"
-                        Width="180"
-                        Height="25"
-                        Content="Отменить" FontSize="16"
-                        Margin="5"
-                        Click="Btn_Cancel_Click"/>
+                            Width="180"
+                            Height="25"
+                            Content="Отменить" 
+                            FontSize="16"
+                            Margin="5"
+                            Click="Btn_Cancel_Click"/>
                     <Button x:Name="Btn_Add"
-                        Width="180"
-                        Height="25"
-                        Content="Добавить" FontSize="16"
-                        Margin="5"
-                        Click="Btn_Add_Click"/>
+                            Width="180"
+                            Height="25"
+                            Content="Добавить" 
+                            FontSize="16"
+                            Margin="5"
+                            Click="Btn_Add_Click"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>
