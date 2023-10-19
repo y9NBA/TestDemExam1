@@ -8,15 +8,15 @@
         Title="MainWindow" Height="450" Width="400">
     <Grid>
         <DockPanel>
-            <StackPanel>
-                <Label Content="Login"/>
-                <TextBox x:Name="login"/> 
-                <Label Content="Password"/>
-                <PasswordBox x:Name="password"/>
+            <StackPanel Margin="0,0,0,50" VerticalAlignment="Center" Orientation="Vertical">
+                <Label Content="Логин" Margin="100,0"/>
+                <TextBox x:Name="login" Margin="100,0"/>
+                <Label Content="Пароль" Margin="100,0"/>
+                <PasswordBox x:Name="password" Margin="100,0"/>
                 <Button x:Name="loginBtr" 
                         Content="Авторизоваться" 
                         Click="LoginBtr_Click"
-                        />
+                        Margin="100,20"/>
             </StackPanel>
         </DockPanel>
     </Grid>

@@ -1,23 +1,22 @@
-﻿<Window x:Class="ДЭ1.Window3"
+﻿<Window x:Class="ДЭ1.StudentGroup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ДЭ1"
         mc:Ignorable="d"
-        Title="Форма добавления студента в группу" Height="450" Width="400"
-        Loaded="Window_Loaded"
-        Closed="Window_Closed">
+        Title="Форма добавления студента в группу" Height="200" Width="400"
+        Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
-            <StackPanel HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <TextBlock Text="Студент" FontSize="16" Height="30" Width="70"/>
-                    <ComboBox x:Name="FYO" FontSize="16" Width="250" />
+                    <ComboBox x:Name="FYO" FontSize="16" Width="250" DisplayMemberPath = "Member_name"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <TextBlock Text="Группа" FontSize="16" Height="30" Width="70"/>
-                    <ComboBox x:Name="Groups" FontSize="16" Width="250" />
+                    <ComboBox x:Name="Groups" FontSize="16" Width="250" DisplayMemberPath = "Name"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="Btn_Cancel"

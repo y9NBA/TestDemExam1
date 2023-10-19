@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ДЭ1
 {
     /// <summary>
-    /// Логика взаимодействия для Window2.xaml
+    /// Логика взаимодействия для ListGroups.xaml
     /// </summary>
-    public partial class Window2 : Window
+    public partial class ListGroups : Window
     {
-        public Window2()
+        public ListGroups()
         {
             InitializeComponent();
         }
@@ -38,7 +38,7 @@ namespace ДЭ1
         private void Btn_Add_Student_Form_Click(object sender, RoutedEventArgs e)
         {
             Singleton.DB.SaveChanges();
-            Window3 window3 = new Window3();
+            StudentGroup window3 = new StudentGroup();
             window3.ShowDialog();
             
         }

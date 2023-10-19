@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ДЭ1
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для ListUsers.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class ListUsers : Window
     {
-        public Window1()
+        public ListUsers()
         {
             InitializeComponent();
         }

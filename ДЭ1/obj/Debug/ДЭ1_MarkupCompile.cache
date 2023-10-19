@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\#\Projects\TestDemExam1\ДЭ1\App.xaml
-41506324977
+5-153011348
 2-1957146511
-17-1029483256
+18-1257235715
 185154079
-MainWindow.xaml;Window1.xaml;Window2.xaml;Window3.xaml;
+MainWindow.xaml;WindowUserRole.xaml;WindowListUsers.xaml;WindowListGroups.xaml;WindowStudentGroup.xaml;
 
 False
 

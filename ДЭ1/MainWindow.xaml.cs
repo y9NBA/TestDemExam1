@@ -41,14 +41,21 @@ namespace ДЭ1
                 MessageBox.Show(string.Join(separator, roles), "Roles");
                 if (roles.Contains("Завка"))
                 {
-                    Window2 window2 = new Window2();
+                    ListGroups window2 = new ListGroups();
                     Hide();
                     window2.ShowDialog();
                     Show();
                 }
+                else if (roles.Contains("Админ"))
+                {
+                    UserRole userRole = new UserRole();
+                    Hide();
+                    userRole.ShowDialog();
+                    Show();
+                }
                 else
                 {
-                    Window1 window1 = new Window1();
+                    ListUsers window1 = new ListUsers();
                     Hide();
                     window1.ShowDialog();
                     Show();

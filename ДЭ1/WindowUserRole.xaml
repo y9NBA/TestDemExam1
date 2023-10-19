@@ -1,0 +1,42 @@
+﻿<Window x:Class="ДЭ1.UserRole"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ДЭ1"
+        mc:Ignorable="d"
+        Title="Установить роль пользователя" Height="200" Width="400"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
+    <Grid>
+        <DockPanel>
+            <StackPanel HorizontalAlignment="Center" >
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Пользователь" FontSize="16" Height="30" Width="110"/>
+                    <ComboBox x:Name="Names" FontSize="16" Width="250" DisplayMemberPath="login" SelectionChanged="Names_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Роль" FontSize="16" Height="30" Width="110"/>
+                    <ComboBox x:Name="Roles" FontSize="16" Width="220" DisplayMemberPath="Name"/>
+                    <Button x:Name="Btn_Clear_Roles" Margin="5,0,0,0" Content="C" FontSize="15" Width="30" Click="Btn_Clear_Roles_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="Btn_Cancel"
+                     Width="180"
+                     Height="25"
+                     Content="Отменить" 
+                     FontSize="16"
+                     Margin="5"
+                     Click="Btn_Cancel_Click"/>
+                    <Button x:Name="Btn_Add"
+                     Width="180"
+                     Height="25"
+                     Content="Сохранить" 
+                     FontSize="16"
+                     Margin="5"
+                     Click="Btn_Add_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

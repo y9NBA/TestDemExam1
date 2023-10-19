@@ -38,8 +38,6 @@
     <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "User.dbo.User_Role" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="User_Role">
     <Key>
       <PropertyRef Name="Login" />
@@ -78,12 +76,7 @@
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="User_Role" EntityType="Self.User_Role" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [User_Role].[Login] AS [Login], 
-    [User_Role].[Role] AS [Role]
-    FROM [dbo].[User_Role] AS [User_Role]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="User_Role" EntityType="Self.User_Role" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_User_Role_Role" Association="Self.FK_User_Role_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="User_Role" EntitySet="User_Role" />
