@@ -12,7 +12,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <TextBlock Text="Студент" FontSize="16" Height="30" Width="70"/>
-                    <ComboBox x:Name="FYO" FontSize="16" Width="250">
+                    <ComboBox x:Name="FYO" FontSize="15" Width="250" SelectionChanged="FYO_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -30,7 +30,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <TextBlock Text="Группа" FontSize="16" Height="30" Width="70"/>
-                    <ComboBox x:Name="Groups" FontSize="16" Width="250" DisplayMemberPath = "Name"/>
+                    <ComboBox x:Name="Groups" FontSize="15" Width="250" DisplayMemberPath = "Name" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="Btn_Cancel"

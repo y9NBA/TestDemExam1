@@ -13,13 +13,13 @@
   </EntityType>
   <EntityType Name="Person">
     <Key>
-      <PropertyRef Name="Last_name" />
-      <PropertyRef Name="First_name" />
-      <PropertyRef Name="Middle_name" />
+      <PropertyRef Name="id" />
     </Key>
+    <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="First_name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Middle_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -30,14 +30,11 @@
   </EntityType>
   <EntityType Name="Student">
     <Key>
-      <PropertyRef Name="Last_name" />
-      <PropertyRef Name="First_name" />
-      <PropertyRef Name="Middle_name" />
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Group_student" />
     </Key>
-    <Property Name="Last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="First_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Middle_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Group_Student" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Group_student" Type="numeric" Precision="18" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -54,6 +51,30 @@
     <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Role" Type="numeric" Precision="18" Scale="0" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Student_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Group_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Role_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="1" />
     <End Role="User_Role" Type="Self.User_Role" Multiplicity="*" />
@@ -85,6 +106,14 @@
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_Role" EntityType="Self.User_Role" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Student_Group" Association="Self.FK_Student_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Person" Association="Self.FK_Student_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
     <AssociationSet Name="FK_User_Role_Role" Association="Self.FK_User_Role_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="User_Role" EntitySet="User_Role" />

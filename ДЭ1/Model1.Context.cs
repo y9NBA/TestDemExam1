@@ -25,10 +25,9 @@ namespace ДЭ1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
     }
 }

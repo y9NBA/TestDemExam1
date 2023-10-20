@@ -18,13 +18,13 @@
         </EntityType>
         <EntityType Name="Person">
           <Key>
-            <PropertyRef Name="Last_name" />
-            <PropertyRef Name="First_name" />
-            <PropertyRef Name="Middle_name" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="First_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Middle_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -35,14 +35,11 @@
         </EntityType>
         <EntityType Name="Student">
           <Key>
-            <PropertyRef Name="Last_name" />
-            <PropertyRef Name="First_name" />
-            <PropertyRef Name="Middle_name" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Group_student" />
           </Key>
-          <Property Name="Last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="First_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Middle_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Group_Student" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Group_student" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -59,6 +56,30 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Student_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Group_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User_Role" Type="Self.User_Role" Multiplicity="*" />
@@ -90,6 +111,14 @@
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Role" EntityType="Self.User_Role" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Student_Group" Association="Self.FK_Student_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Person" Association="Self.FK_Student_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role_Role" Association="Self.FK_User_Role_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User_Role" EntitySet="User_Role" />
@@ -104,27 +133,19 @@
     <edmx:ConceptualModels>
       <Schema Namespace="UserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Group" EntityType="UserModel.Group" />
           <EntitySet Name="Role" EntityType="UserModel.Role" />
           <EntitySet Name="User" EntityType="UserModel.User" />
           <AssociationSet Name="User_Role" Association="UserModel.User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="Group" EntityType="UserModel.Group" />
           <EntitySet Name="Person" EntityType="UserModel.Person" />
-          <EntitySet Name="Student" EntityType="UserModel.Student" />
-        </EntityContainer>
-        <EntityType Name="Group">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Year" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
-          <Property Name="Litera" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Name="SubGroup" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
-          <Property Name="CountClasses" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
+          <AssociationSet Name="Student" Association="UserModel.Student">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
@@ -145,45 +166,39 @@
           <End Type="UserModel.Role" Role="Role" Multiplicity="*" />
           <End Type="UserModel.User" Role="User" Multiplicity="*" />
         </Association>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="Litera" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="SubGroup" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+          <Property Name="CountClasses" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Person" Relationship="UserModel.Student" FromRole="Group" ToRole="Person" />
+        </EntityType>
         <EntityType Name="Person">
           <Key>
-            <PropertyRef Name="Last_name" />
-            <PropertyRef Name="First_name" />
-            <PropertyRef Name="Middle_name" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Middle_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Group" Relationship="UserModel.Student" FromRole="Person" ToRole="Group" />
         </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="Last_name" />
-            <PropertyRef Name="First_name" />
-            <PropertyRef Name="Middle_name" />
-          </Key>
-          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Middle_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Group_Student" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-      </Schema>
+        <Association Name="Student">
+          <End Type="UserModel.Group" Role="Group" Multiplicity="*" />
+          <End Type="UserModel.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище UserModelContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Group">
-            <EntityTypeMapping TypeName="UserModel.Group">
-              <MappingFragment StoreEntitySet="Group">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
-                <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
-                <ScalarProperty Name="Litera" ColumnName="Litera" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="UserModel.Role">
               <MappingFragment StoreEntitySet="Role">
@@ -208,26 +223,38 @@
               <ScalarProperty Name="ID" ColumnName="Role" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="UserModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
+                <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
+                <ScalarProperty Name="Litera" ColumnName="Litera" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="UserModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
                 <ScalarProperty Name="First_name" ColumnName="First_name" />
                 <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Student">
-            <EntityTypeMapping TypeName="UserModel.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="Group_Student" ColumnName="Group_Student" />
-                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
-                <ScalarProperty Name="First_name" ColumnName="First_name" />
-                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          <AssociationSetMapping Name="Student" TypeName="UserModel.Student" StoreEntitySet="Student">
+            <EndProperty Name="Person">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="Group">
+              <ScalarProperty Name="ID" ColumnName="Group_student" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

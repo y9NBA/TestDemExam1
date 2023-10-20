@@ -43,35 +43,27 @@ namespace ДЭ1
 
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            if (FYO.SelectedItem == null || Groups.SelectedItem == null)
+            Person person = FYO.SelectedItem as Person;
+            Group group = Groups.SelectedItem as Group;
+
+            if (person == null)
                 return;
 
-            Singleton.DB.Student.ToList();
-            ObservableCollection<Student> students = Singleton.DB.Student.Local;
+            person.Group.Clear();
 
-            Student studentLocal = new Student();
+            if (group != null)
+                person.Group.Add(group);
+
+            Singleton.DB.SaveChanges();
+        }
+
+        private void FYO_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             Person person = FYO.SelectedItem as Person;
 
-            studentLocal.Last_name = person.Last_name;
-            studentLocal.First_name = person.First_name;
-            studentLocal.Middle_name = person.Middle_name;
-            studentLocal.Group_Student = Groups.Text;
+            if (person == null) return;
 
-            foreach (Student student in students) 
-            {
-                if (student.Last_name == studentLocal.Last_name && student.First_name == studentLocal.First_name && student.Middle_name == studentLocal.Middle_name)
-                {
-                    if (MessageBox.Show($"Такой студент уже зачислен в группу {student.Group_Student}.\n Хотите перевести студента в другую группу?", "Ошибочка!", 
-                        MessageBoxButton.YesNo, 0, MessageBoxResult.No) == MessageBoxResult.Yes)
-                    {
-                        student.Group_Student = studentLocal.Group_Student;
-                        Singleton.DB.SaveChanges();
-                    }
-                    return;
-                }
-            }
-            Singleton.DB.Student.Local.Add(studentLocal);
-            Singleton.DB.SaveChanges();
+            Groups.SelectedItem = person.Group.FirstOrDefault();
         }
     }
 }

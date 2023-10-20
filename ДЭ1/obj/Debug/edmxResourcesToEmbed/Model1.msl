@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище UserModelContainer" CdmEntityContainer="Entities">
-    <EntitySetMapping Name="Group">
-      <EntityTypeMapping TypeName="UserModel.Group">
-        <MappingFragment StoreEntitySet="Group">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
-          <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
-          <ScalarProperty Name="Litera" ColumnName="Litera" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="UserModel.Role">
         <MappingFragment StoreEntitySet="Role">
@@ -37,24 +25,36 @@
         <ScalarProperty Name="ID" ColumnName="Role" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="UserModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
+          <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
+          <ScalarProperty Name="Litera" ColumnName="Litera" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Person">
       <EntityTypeMapping TypeName="UserModel.Person">
         <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
           <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
           <ScalarProperty Name="First_name" ColumnName="First_name" />
           <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Student">
-      <EntityTypeMapping TypeName="UserModel.Student">
-        <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="Group_Student" ColumnName="Group_Student" />
-          <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
-          <ScalarProperty Name="First_name" ColumnName="First_name" />
-          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+    <AssociationSetMapping Name="Student" TypeName="UserModel.Student" StoreEntitySet="Student">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="id" ColumnName="id" />
+      </EndProperty>
+      <EndProperty Name="Group">
+        <ScalarProperty Name="ID" ColumnName="Group_student" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
