@@ -56,19 +56,17 @@ namespace ДЭ1
             {
                 if (student.Member_name == studentLocal.Member_name)
                 {
-                    if (MessageBox.Show($"Такой студент уже зачислен в группу {student.Group_Student}.\n Хотите перевести студента в другую группу?", "Ошибочка!", MessageBoxButton.YesNo, 0, MessageBoxResult.No) == MessageBoxResult.Yes)
+                    if (MessageBox.Show($"Такой студент уже зачислен в группу {student.Group_Student}.\n Хотите перевести студента в другую группу?", "Ошибочка!", 
+                        MessageBoxButton.YesNo, 0, MessageBoxResult.No) == MessageBoxResult.Yes)
                     {
                         student.Group_Student = studentLocal.Group_Student;
-                        Singleton.DB.SaveChanges();
-                    }
-                    else
-                    {
-                        Singleton.DB.Student.Local.Add(studentLocal);
                         Singleton.DB.SaveChanges();
                     }
                     return;
                 }
             }
+            Singleton.DB.Student.Local.Add(studentLocal);
+            Singleton.DB.SaveChanges();
         }
     }
 }

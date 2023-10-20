@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ДЭ1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
+        Title="Авторизация" Height="450" Width="400">
     <Grid>
         <DockPanel>
             <StackPanel Margin="0,0,0,50" VerticalAlignment="Center" Orientation="Vertical">

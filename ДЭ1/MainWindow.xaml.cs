@@ -38,7 +38,7 @@ namespace ДЭ1
                 {
                     roles.Add(role.Name);
                 }
-                MessageBox.Show(string.Join(separator, roles), "Roles");
+                MessageBox.Show(string.Join(separator, roles), "Ваша роль");
                 if (roles.Contains("Завка"))
                 {
                     ListGroups window2 = new ListGroups();
