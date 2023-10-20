@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
@@ -46,15 +47,19 @@ namespace ДЭ1
                 return;
 
             Singleton.DB.Student.ToList();
-            var students = Singleton.DB.Student.Local;
+            ObservableCollection<Student> students = Singleton.DB.Student.Local;
 
             Student studentLocal = new Student();
-            studentLocal.Member_name = FYO.Text;
+            Person person = FYO.SelectedItem as Person;
+
+            studentLocal.Last_name = person.Last_name;
+            studentLocal.First_name = person.First_name;
+            studentLocal.Middle_name = person.Middle_name;
             studentLocal.Group_Student = Groups.Text;
 
             foreach (Student student in students) 
             {
-                if (student.Member_name == studentLocal.Member_name)
+                if (student.Last_name == studentLocal.Last_name && student.First_name == studentLocal.First_name && student.Middle_name == studentLocal.Middle_name)
                 {
                     if (MessageBox.Show($"Такой студент уже зачислен в группу {student.Group_Student}.\n Хотите перевести студента в другую группу?", "Ошибочка!", 
                         MessageBoxButton.YesNo, 0, MessageBoxResult.No) == MessageBoxResult.Yes)

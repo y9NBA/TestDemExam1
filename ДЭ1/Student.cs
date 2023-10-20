@@ -14,7 +14,9 @@ namespace ДЭ1
     
     public partial class Student
     {
-        public string Member_name { get; set; }
+        public string Last_name { get; set; }
+        public string First_name { get; set; }
+        public string Middle_name { get; set; }
         public string Group_Student { get; set; }
     }
 }

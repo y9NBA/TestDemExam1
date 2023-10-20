@@ -12,7 +12,21 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <TextBlock Text="Студент" FontSize="16" Height="30" Width="70"/>
-                    <ComboBox x:Name="FYO" FontSize="16" Width="250" DisplayMemberPath = "Member_name"/>
+                    <ComboBox x:Name="FYO" FontSize="16" Width="250">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                                            <Binding Path="Last_name" />
+                                            <Binding Path="First_name" />
+                                            <Binding Path="Middle_name" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <TextBlock Text="Группа" FontSize="16" Height="30" Width="70"/>

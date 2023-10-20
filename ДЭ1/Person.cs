@@ -14,6 +14,8 @@ namespace ДЭ1
     
     public partial class Person
     {
-        public string Member_name { get; set; }
+        public string Last_name { get; set; }
+        public string First_name { get; set; }
+        public string Middle_name { get; set; }
     }
 }

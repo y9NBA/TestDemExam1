@@ -13,13 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Person">
-      <EntityTypeMapping TypeName="UserModel.Person">
-        <MappingFragment StoreEntitySet="Person">
-          <ScalarProperty Name="Member_name" ColumnName="Member_name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="UserModel.Role">
         <MappingFragment StoreEntitySet="Role">
@@ -44,11 +37,22 @@
         <ScalarProperty Name="ID" ColumnName="Role" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="UserModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Student">
       <EntityTypeMapping TypeName="UserModel.Student">
         <MappingFragment StoreEntitySet="Student">
           <ScalarProperty Name="Group_Student" ColumnName="Group_Student" />
-          <ScalarProperty Name="Member_name" ColumnName="Member_name" />
+          <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

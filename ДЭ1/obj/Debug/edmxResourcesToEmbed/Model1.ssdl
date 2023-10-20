@@ -13,9 +13,13 @@
   </EntityType>
   <EntityType Name="Person">
     <Key>
-      <PropertyRef Name="Member_name" />
+      <PropertyRef Name="Last_name" />
+      <PropertyRef Name="First_name" />
+      <PropertyRef Name="Middle_name" />
     </Key>
-    <Property Name="Member_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="First_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Middle_name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -26,9 +30,13 @@
   </EntityType>
   <EntityType Name="Student">
     <Key>
-      <PropertyRef Name="Member_name" />
+      <PropertyRef Name="Last_name" />
+      <PropertyRef Name="First_name" />
+      <PropertyRef Name="Middle_name" />
     </Key>
-    <Property Name="Member_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="First_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Middle_name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Group_Student" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
