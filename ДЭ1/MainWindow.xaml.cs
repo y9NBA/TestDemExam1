@@ -39,14 +39,14 @@ namespace ДЭ1
                     roles.Add(role.Name);
                 }
                 MessageBox.Show(string.Join(separator, roles), "Ваша роль");
-                if (roles.Contains("Завка"))
+                if (roles.Contains("Зав. Отделением"))
                 {
                     ListGroups window2 = new ListGroups();
                     Hide();
                     window2.ShowDialog();
                     Show();
                 }
-                else if (roles.Contains("Админ"))
+                else if (roles.Contains("Администратор"))
                 {
                     UserRole userRole = new UserRole();
                     Hide();
