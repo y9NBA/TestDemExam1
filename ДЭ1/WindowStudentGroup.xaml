@@ -12,7 +12,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <TextBlock Text="Студент" FontSize="16" Height="30" Width="70"/>
-                    <ComboBox x:Name="FYO" FontSize="15" Width="250" SelectionChanged="FYO_SelectionChanged">
+                    <ComboBox x:Name="Persons" FontSize="15" Width="250" SelectionChanged="Persons_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>

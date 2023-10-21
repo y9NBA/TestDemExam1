@@ -32,7 +32,7 @@ namespace ДЭ1
         {
             Singleton.DB.Person.ToList();
             Singleton.DB.Group.ToList();
-            FYO.ItemsSource = Singleton.DB.Person.Local;
+            Persons.ItemsSource = Singleton.DB.Person.Local;
             Groups.ItemsSource = Singleton.DB.Group.Local;
         }
 
@@ -43,7 +43,7 @@ namespace ДЭ1
 
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            Person person = FYO.SelectedItem as Person;
+            Person person = Persons.SelectedItem as Person;
             Group group = Groups.SelectedItem as Group;
 
             if (person == null)
@@ -57,11 +57,12 @@ namespace ДЭ1
             Singleton.DB.SaveChanges();
         }
 
-        private void FYO_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Persons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Person person = FYO.SelectedItem as Person;
+            Person person = Persons.SelectedItem as Person;
 
-            if (person == null) return;
+            if (person == null) 
+                return;
 
             Groups.SelectedItem = person.Group.FirstOrDefault();
         }
