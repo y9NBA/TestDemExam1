@@ -61,7 +61,7 @@ namespace ДЭ1
             User user = Names.SelectedItem as User;
             Role role = Roles_off.SelectedItem as Role;
 
-            if (role == null) return;
+            if (role == null || user == null) return;
 
             user.Role.Add(role);
 
@@ -71,6 +71,8 @@ namespace ДЭ1
         private void Btn_Add_All_Role_Click(object sender, RoutedEventArgs e)
         {
             User user = Names.SelectedItem as User;
+
+            if (user == null) return;
 
             foreach(Role role in Singleton.DB.Role.ToList())
             {
@@ -86,7 +88,7 @@ namespace ДЭ1
             User user = Names.SelectedItem as User;
             Role role = Roles_on.SelectedItem as Role;
 
-            if (role == null) return;
+            if (role == null || user == null) return;
 
             user.Role.Remove(role);
 
@@ -96,6 +98,8 @@ namespace ДЭ1
         private void Btn_Delete_All_Role_Click(object sender, RoutedEventArgs e)
         {
             User user = Names.SelectedItem as User;
+
+            if (user == null) return;
 
             foreach (Role role in Singleton.DB.Role.ToList())
             {
