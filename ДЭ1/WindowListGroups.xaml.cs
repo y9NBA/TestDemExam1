@@ -38,8 +38,8 @@ namespace ДЭ1
         private void Btn_Add_Student_Form_Click(object sender, RoutedEventArgs e)
         {
             Singleton.DB.SaveChanges();
-            StudentGroup window3 = new StudentGroup();
-            window3.ShowDialog();
+            StudentGroup studentGroup = new StudentGroup();
+            studentGroup.ShowDialog();
             
         }
     }

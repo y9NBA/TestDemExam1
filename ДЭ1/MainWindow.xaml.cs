@@ -28,7 +28,7 @@ namespace ДЭ1
         private void LoginBtr_Click(object sender, RoutedEventArgs e)
         {
             List <User> users = Singleton.DB.User.Where(user => user.login == login.Text && user.password == password.Password).ToList();
-            //List<dno> users = Singleton.DB.dno.ToList();
+
             if ( users.Count == 1)
             {
                 User user = users[0];
@@ -38,12 +38,12 @@ namespace ДЭ1
                 {
                     roles.Add(role.Name);
                 }
-                MessageBox.Show(string.Join(separator, roles), "Ваша роль");
+                MessageBox.Show(string.Join(separator, roles), "Ваши роли:");
                 if (roles.Contains("Зав. Отделением"))
                 {
-                    ListGroups window2 = new ListGroups();
+                    ListGroups listGroups = new ListGroups();
                     Hide();
-                    window2.ShowDialog();
+                    listGroups.ShowDialog();
                     Show();
                 }
                 else if (roles.Contains("Администратор"))
@@ -55,13 +55,12 @@ namespace ДЭ1
                 }
                 else
                 {
-                    ListUsers window1 = new ListUsers();
+                    ListUsers listUsers = new ListUsers();
                     Hide();
-                    window1.ShowDialog();
+                    listUsers.ShowDialog();
                     Show();
                 }
             }
-       
         }
     }
 }
