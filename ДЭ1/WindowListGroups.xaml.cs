@@ -40,7 +40,6 @@ namespace ДЭ1
             Singleton.DB.SaveChanges();
             StudentGroup studentGroup = new StudentGroup();
             studentGroup.ShowDialog();
-            
         }
     }
 }

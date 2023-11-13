@@ -54,3 +54,9 @@ C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowListGroups.baml
 C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowStudentGroup.baml
 C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowEditRolesUser.g.cs
 C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowEditRolesUser.baml
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowPersonGroup.g.cs
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowPersonGroup.baml
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowRegister.g.cs
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowRegister.baml
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowListStudent.g.cs
+C:\Users\User\#\Projects\TestDemExam1\ДЭ1\obj\Debug\WindowListStudent.baml

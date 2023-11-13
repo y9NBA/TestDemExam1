@@ -12,28 +12,22 @@ namespace ДЭ1
     using System;
     using System.Collections.Generic;
     
-    public partial class Group
+    public partial class AcademicYear
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Group()
+        public AcademicYear()
         {
             this.AcademicLoad = new HashSet<AcademicLoad>();
-            this.AcademicYear = new HashSet<AcademicYear>();
-            this.Person = new HashSet<Person>();
+            this.Group = new HashSet<Group>();
         }
     
         public decimal ID { get; set; }
-        public decimal Year { get; set; }
-        public string Litera { get; set; }
-        public decimal SubGroup { get; set; }
-        public decimal CountClasses { get; set; }
-        public string Name { get; set; }
+        public int StartYear { get; set; }
+        public int EndYear { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicLoad> AcademicLoad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AcademicYear> AcademicYear { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> Person { get; set; }
+        public virtual ICollection<Group> Group { get; set; }
     }
 }

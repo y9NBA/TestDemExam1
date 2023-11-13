@@ -70,6 +70,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AcademicLoad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AcademicYear.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Discipline.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Group.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -95,11 +104,23 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Singleton.cs" />
+    <Compile Include="Teacher.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="WindowEditRolesUser.xaml.cs">
       <DependentUpon>WindowEditRolesUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowListStudent.xaml.cs">
+      <DependentUpon>WindowListStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowPersonGroup.xaml.cs">
+      <DependentUpon>WindowPersonGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowRegister.xaml.cs">
+      <DependentUpon>WindowRegister.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowUserRole.xaml.cs">
       <DependentUpon>WindowUserRole.xaml</DependentUpon>
@@ -126,6 +147,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WindowEditRolesUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowListStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPersonGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

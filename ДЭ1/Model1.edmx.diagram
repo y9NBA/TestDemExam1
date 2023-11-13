@@ -4,14 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b1cf46588ca24cca8227230237dfc76d" Name="Diagram1">
-        <EntityTypeShape EntityType="UserModel.Role" Width="1.5" PointX="0.75" PointY="0.875" />
-        <EntityTypeShape EntityType="UserModel.User" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="UserModel.User_Role" />
-        <EntityTypeShape EntityType="UserModel.Group" Width="1.5" PointX="0.75" PointY="4" />
-        <EntityTypeShape EntityType="UserModel.Person" Width="1.5" PointX="3" PointY="4" />
+      <Diagram DiagramId="b1cf46588ca24cca8227230237dfc76d" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="UserModel.AcademicLoad" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="UserModel.AcademicYear" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="UserModel.Discipline" Width="1.5" PointX="7.5" PointY="1.5" />
+        <EntityTypeShape EntityType="UserModel.Group" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="UserModel.Person" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="UserModel.Role" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="UserModel.Teacher" Width="1.5" PointX="7.5" PointY="6.875" />
+        <EntityTypeShape EntityType="UserModel.User" Width="1.5" PointX="7.5" PointY="4.375" />
+        <AssociationConnector Association="UserModel.FK_AcademicLoad_AcademicYear" />
+        <AssociationConnector Association="UserModel.FK_AcademicLoad_Discipline" />
+        <AssociationConnector Association="UserModel.FK_AcademicLoad_Group" />
+        <AssociationConnector Association="UserModel.FK_AcademicLoad_Teacher" />
+        <AssociationConnector Association="UserModel.FK_Teacher_Person" />
+        <AssociationConnector Association="UserModel.AcademicY_Group" />
         <AssociationConnector Association="UserModel.Student" />
-        </Diagram>
+        <AssociationConnector Association="UserModel.User_Person" />
+        <AssociationConnector Association="UserModel.User_Role" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -1,39 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="UserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Role" EntityType="UserModel.Role" />
-    <EntitySet Name="User" EntityType="UserModel.User" />
-    <AssociationSet Name="User_Role" Association="UserModel.User_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="User" EntitySet="User" />
-    </AssociationSet>
+    <EntitySet Name="AcademicLoad" EntityType="UserModel.AcademicLoad" />
+    <EntitySet Name="AcademicYear" EntityType="UserModel.AcademicYear" />
+    <EntitySet Name="Discipline" EntityType="UserModel.Discipline" />
     <EntitySet Name="Group" EntityType="UserModel.Group" />
     <EntitySet Name="Person" EntityType="UserModel.Person" />
+    <EntitySet Name="Role" EntityType="UserModel.Role" />
+    <EntitySet Name="Teacher" EntityType="UserModel.Teacher" />
+    <EntitySet Name="User" EntityType="UserModel.User" />
+    <AssociationSet Name="FK_AcademicLoad_AcademicYear" Association="UserModel.FK_AcademicLoad_AcademicYear">
+      <End Role="AcademicYear" EntitySet="AcademicYear" />
+      <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AcademicLoad_Discipline" Association="UserModel.FK_AcademicLoad_Discipline">
+      <End Role="Discipline" EntitySet="Discipline" />
+      <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AcademicLoad_Group" Association="UserModel.FK_AcademicLoad_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AcademicLoad_Teacher" Association="UserModel.FK_AcademicLoad_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Person" Association="UserModel.FK_Teacher_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="AcademicY_Group" Association="UserModel.AcademicY_Group">
+      <End Role="AcademicYear" EntitySet="AcademicYear" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
     <AssociationSet Name="Student" Association="UserModel.Student">
       <End Role="Group" EntitySet="Group" />
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
+    <AssociationSet Name="User_Person" Association="UserModel.User_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="User_Role" Association="UserModel.User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Role">
+  <EntityType Name="AcademicLoad">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="DisciplineID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="GroupID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TeacherID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="AcademicYearID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Semester" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="AcademicYear" Relationship="UserModel.FK_AcademicLoad_AcademicYear" FromRole="AcademicLoad" ToRole="AcademicYear" />
+    <NavigationProperty Name="Discipline" Relationship="UserModel.FK_AcademicLoad_Discipline" FromRole="AcademicLoad" ToRole="Discipline" />
+    <NavigationProperty Name="Group" Relationship="UserModel.FK_AcademicLoad_Group" FromRole="AcademicLoad" ToRole="Group" />
+    <NavigationProperty Name="Teacher" Relationship="UserModel.FK_AcademicLoad_Teacher" FromRole="AcademicLoad" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="AcademicYear">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="StartYear" Type="Int32" Nullable="false" />
+    <Property Name="EndYear" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AcademicLoad" Relationship="UserModel.FK_AcademicLoad_AcademicYear" FromRole="AcademicYear" ToRole="AcademicLoad" />
+    <NavigationProperty Name="Group" Relationship="UserModel.AcademicY_Group" FromRole="AcademicYear" ToRole="Group" />
+  </EntityType>
+  <EntityType Name="Discipline">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="User" Relationship="UserModel.User_Role" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="AcademicLoad" Relationship="UserModel.FK_AcademicLoad_Discipline" FromRole="Discipline" ToRole="AcademicLoad" />
   </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="login" />
-    </Key>
-    <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Role" Relationship="UserModel.User_Role" FromRole="User" ToRole="Role" />
-  </EntityType>
-  <Association Name="User_Role">
-    <End Type="UserModel.Role" Role="Role" Multiplicity="*" />
-    <End Type="UserModel.User" Role="User" Multiplicity="*" />
-  </Association>
   <EntityType Name="Group">
     <Key>
       <PropertyRef Name="ID" />
@@ -44,6 +89,8 @@
     <Property Name="SubGroup" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
     <Property Name="CountClasses" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="AcademicLoad" Relationship="UserModel.FK_AcademicLoad_Group" FromRole="Group" ToRole="AcademicLoad" />
+    <NavigationProperty Name="AcademicYear" Relationship="UserModel.AcademicY_Group" FromRole="Group" ToRole="AcademicYear" />
     <NavigationProperty Name="Person" Relationship="UserModel.Student" FromRole="Group" ToRole="Person" />
   </EntityType>
   <EntityType Name="Person">
@@ -54,11 +101,110 @@
     <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Middle_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Teacher" Relationship="UserModel.FK_Teacher_Person" FromRole="Person" ToRole="Teacher" />
     <NavigationProperty Name="Group" Relationship="UserModel.Student" FromRole="Person" ToRole="Group" />
+    <NavigationProperty Name="User" Relationship="UserModel.User_Person" FromRole="Person" ToRole="User" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="UserModel.User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="PeopleID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="AcademicLoad" Relationship="UserModel.FK_AcademicLoad_Teacher" FromRole="Teacher" ToRole="AcademicLoad" />
+    <NavigationProperty Name="Person" Relationship="UserModel.FK_Teacher_Person" FromRole="Teacher" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="UserModel.User_Person" FromRole="User" ToRole="Person" />
+    <NavigationProperty Name="Role" Relationship="UserModel.User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_AcademicLoad_AcademicYear">
+    <End Type="UserModel.AcademicYear" Role="AcademicYear" Multiplicity="1" />
+    <End Type="UserModel.AcademicLoad" Role="AcademicLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AcademicYear">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AcademicLoad">
+        <PropertyRef Name="AcademicYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AcademicLoad_Discipline">
+    <End Type="UserModel.Discipline" Role="Discipline" Multiplicity="1" />
+    <End Type="UserModel.AcademicLoad" Role="AcademicLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discipline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AcademicLoad">
+        <PropertyRef Name="DisciplineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AcademicLoad_Group">
+    <End Type="UserModel.Group" Role="Group" Multiplicity="1" />
+    <End Type="UserModel.AcademicLoad" Role="AcademicLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AcademicLoad">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AcademicLoad_Teacher">
+    <End Type="UserModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="UserModel.AcademicLoad" Role="AcademicLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AcademicLoad">
+        <PropertyRef Name="TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Person">
+    <End Type="UserModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="UserModel.Teacher" Role="Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="PeopleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AcademicY_Group">
+    <End Type="UserModel.AcademicYear" Role="AcademicYear" Multiplicity="*" />
+    <End Type="UserModel.Group" Role="Group" Multiplicity="*" />
+  </Association>
   <Association Name="Student">
     <End Type="UserModel.Group" Role="Group" Multiplicity="*" />
     <End Type="UserModel.Person" Role="Person" Multiplicity="*" />
+  </Association>
+  <Association Name="User_Person">
+    <End Type="UserModel.Person" Role="Person" Multiplicity="*" />
+    <End Type="UserModel.User" Role="User" Multiplicity="*" />
+  </Association>
+  <Association Name="User_Role">
+    <End Type="UserModel.Role" Role="Role" Multiplicity="*" />
+    <End Type="UserModel.User" Role="User" Multiplicity="*" />
   </Association>
 </Schema>
